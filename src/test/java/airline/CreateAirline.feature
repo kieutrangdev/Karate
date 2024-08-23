@@ -13,19 +13,29 @@ Feature: Create an airline
 #    """
 #    When method post
 #    Then status 200
+#
+#  Scenario: Create an airline with created json payload
+#    Given url 'https://api.instantwebtools.net/v1/airlines'
+#    * def requestPayload = {}
+#    * requestPayload.id = "252d3bca-d9bb-476c-9a97-562d685e239c"
+#    * requestPayload.name = "Sri Lankan Airways"
+#    * requestPayload.country = "Sri Lanka"
+#    * requestPayload.logo = "https:\/\/upload.wikimedia.org\/wikipedia\/en\/thumb\/9\/9b\/Qatar_Airways_Logo.svg\/sri_lanka.png"
+#    * requestPayload.slogan = "From Sri Lanka"
+#    * requestPayload.head_quaters = "Katunayake, Sri Lanka"
+#    * requestPayload.website = "www.srilankaaairways.com"
+#    * requestPayload.established = 1990
+#    * print requestPayload
+#    And request requestPayload
+#    When method post
+#    Then status 200
 
-  Scenario: Create an airline with created json payload
+  Scenario: Create an airline with json from external source
     Given url 'https://api.instantwebtools.net/v1/airlines'
-    * def requestPayload = {}
-    * requestPayload.id = "252d3bca-d9bb-476c-9a97-562d685e239c"
-    * requestPayload.name = "Sri Lankan Airways"
-    * requestPayload.country = "Sri Lanka"
-    * requestPayload.logo = "https:\/\/upload.wikimedia.org\/wikipedia\/en\/thumb\/9\/9b\/Qatar_Airways_Logo.svg\/sri_lanka.png"
-    * requestPayload.slogan = "From Sri Lanka"
-    * requestPayload.head_quaters = "Katunayake, Sri Lanka"
-    * requestPayload.website = "www.srilankaaairways.com"
-    * requestPayload.established = 1990
+    * def requestPayload = read('payload/CreateAirlinePayload.json')
+    * set requestPayload.id = "252d3bca-d9bb-476c-9a97-562d685e989c"
     * print requestPayload
     And request requestPayload
     When method post
     Then status 200
+    * remove requestPayload.id
