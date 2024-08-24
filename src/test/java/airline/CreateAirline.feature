@@ -31,7 +31,8 @@ Feature: Create an airline
 #    Then status 200
 
   Scenario: Create an airline with json from external source
-    Given url 'https://api.instantwebtools.net/v1/airlines'
+    Given url createAirlineUrl
+    And print "url is ", createAirlineUrl
     * def requestPayload = read('payload/CreateAirlinePayload.json')
     * set requestPayload.id = "252d3bca-d9bb-476c-9a97-562d685e989c"
     * print requestPayload
