@@ -5,6 +5,6 @@ import com.intuit.karate.junit5.Karate;
 public class AirlineRunner {
     @Karate.Test
     Karate testUsers() {
-        return Karate.run("CreateAirlineScenarioOutline").relativeTo(getClass());
+        return Karate.run("FuzzyMatchers").relativeTo(getClass());
     }
 }
